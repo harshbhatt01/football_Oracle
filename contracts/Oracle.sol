@@ -26,7 +26,7 @@ contract Oracle is Ownable{
         playerData[player_id].position_id = _position_id;
     }
 
-    function payForWeatherData() public payable returns(bool){
+    function payForPlayerData() public payable returns(bool){
         require(msg.value >= 1 ether, "Payment must be at least 1 ether");
         payer = payable(tx.origin);
         return true;
