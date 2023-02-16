@@ -13,7 +13,7 @@ contract Contract2 {
     uint256 player_id;
 
     function requestPlayerData(uint256 _player_id)public payable returns (string memory, bool){
-        (bool success) = c1.payForWeatherData{value:msg.value}();
+        (bool success) = c1.payForPlayerData{value:msg.value}();
 
         player_id = _player_id;
         string memory revertString = c1.requestPlayer(_player_id);
