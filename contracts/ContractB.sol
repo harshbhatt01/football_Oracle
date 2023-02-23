@@ -1,30 +1,24 @@
 // SPDX-License-Identifier: GPL-3.0
 pragma solidity ^0.8.0;
-import "./Oracle.sol";
+
+interface Oracle {
+    function getPlayerDetails(uint player_id) external view returns(string memory, string memory, uint);
+    function requestPlayer(uint player_id) external payable returns(string memory);
+}
 
 contract Contract2 {
-    Oracle c1;
-    bool payment;
+    address oracleAddress;
 
-    constructor(address _c1) public {
-        c1 = Oracle(_c1);
+    constructor(address _c1)  {
+       oracleAddress = _c1;
     }
 
-    uint256 player_id;
-
-    function requestPlayerData(uint256 _player_id)public payable returns (string memory, bool){
-        (bool success) = c1.payForPlayerData{value:msg.value}();
-
-        player_id = _player_id;
-        string memory revertString = c1.requestPlayer(_player_id);
-        return (revertString,success);
-    }
-
-    function getData() public view returns(uint256){
-        return(player_id);
+    function requestPlayerData(uint256 _player_id)public payable returns (string memory){
+        string memory success = Oracle(oracleAddress).requestPlayer{value:msg.value}(_player_id);
+        return (success);
     }
 
     function retreiveData(uint _player_id) public view returns(string memory, string memory, uint){
-        return c1.getPlayerDetails(_player_id);
+        return Oracle(oracleAddress).getPlayerDetails(_player_id);
     }
 }
