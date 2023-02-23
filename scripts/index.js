@@ -5,7 +5,7 @@ const { abi } = require('../constrants/index.js');
 const provider = new ethers.providers.JsonRpcProvider(
   'https://api.baobab.klaytn.net:8651/'
 );
-const contractAddress = '0xc6097F5347067bFe4AaC77902320131FE7bF07E2';
+const contractAddress = '0xd9145CCE52D386f254917e481eB44e9943F39138';
 const privateKey =
   '884ae64d8fc43f49a0c9fbce02f9eabdabfe21cdbe8e9cddb018d2d8016076d0';
 const wallet = new ethers.Wallet(privateKey, provider);

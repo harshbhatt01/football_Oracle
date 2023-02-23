@@ -33,6 +33,7 @@ contract Oracle is Ownable{
 
     function getPlayerDetails(uint player_id) public view returns(string memory, string memory, uint){
         PlayerData memory currentplayerdata = playerData[player_id];
+        require(bytes(currentplayerdata.player_name).length != 0 && bytes(currentplayerdata.Nationality).length !=0 && currentplayerdata.position_id !=0, "Not Fetched yet");
         return (currentplayerdata.player_name, currentplayerdata.Nationality, currentplayerdata.position_id);
     }
 }
